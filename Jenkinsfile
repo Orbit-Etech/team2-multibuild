@@ -3,7 +3,7 @@ pipeline{
   stages{
   	stage('version-control'){
   		steps{
-  			git checkout
+  			checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-build', url: 'https://github.com/Orbit-Etech/team2-multibuild.git']]])
   		}
   	}
     stage('parallel-job'){
