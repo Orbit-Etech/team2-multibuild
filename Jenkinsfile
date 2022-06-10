@@ -20,7 +20,7 @@ pipeline{
         }
         stage('sub-job3'){
           steps{
-            sh 'lsblk'
+            sh 'free -g'
           }
         }
       }
