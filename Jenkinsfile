@@ -10,18 +10,26 @@ pipeline{
       parallel{
         stage('sub-job1'){
           steps{
-            echo 'action1'
+            sh 'uptime'
           }
         }
         stage('sub-job2'){
           steps{
-            echo 'action2'
+             sh 'lscpu'
+          }
+        }
+        stage('sub-job3'){
+          steps{
+            sh 'free -g'
           }
         }
       }
     }
-    stage('codebuild'){
-    	steps{
+    stage('deployment'){
+      when {
+          branch 'develop'
+      }
+      steps{
     		sh 'cat /etc/passwd'
     	}
     }
